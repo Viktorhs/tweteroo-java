@@ -25,8 +25,17 @@ public class Tweet {
   @Column(length = 500, nullable = false)
   private String tweet;
 
+  @Column(length = 1000, nullable = false)
+  private String avatar;
+
   public Tweet(TweetDTO data) {
     this.username = data.username();
+    this.tweet = data.tweet();
+  }
+
+  public Tweet(TweetDTO data, String avatar) {
+    this.username = data.username();
+    this.avatar = avatar;
     this.tweet = data.tweet();
   }
 
