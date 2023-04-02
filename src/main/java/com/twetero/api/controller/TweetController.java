@@ -48,9 +48,14 @@ public class TweetController {
 
   @GetMapping
   public List<Tweet> listAll(@RequestParam(required = false) String page) {
-    List<Tweet> tweets = tweetRepository.findAllByOrderByIdDesc();
+    List<Tweet> tweets = tweetRepository.findAllByOrderByIdDesc(); // retorna os tweetes em forma descrescente pelo ID
     List<Tweet> response = new ArrayList<>();
     int pageInt;
+
+    // Escolhi filtrar os tweets por linha de codigo para praticar a logica e
+    // metodos do Java.
+    // Existe outro caminho para esse mesmo resultado filtrando os tweets ja pelo
+    // banco de dados.
 
     if (tweets.isEmpty()) {
       return response;
@@ -66,8 +71,8 @@ public class TweetController {
       return response;
     }
 
-    int end = Math.min(start + 5, tweets.size());
-    response = tweets.subList(start, end);
+    int end = Math.min(start + 5, tweets.size()); // Para verificar o menor e não acessar uma posição invaida na array
+    response = tweets.subList(start, end); // Retorna uma parte da lista entre os valores start e end
 
     return response;
 
